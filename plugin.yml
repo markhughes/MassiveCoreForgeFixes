@@ -1,0 +1,6 @@
+main: me.markeh.massivecoreforgefixes.MassiveCoreForgeFixes
+name: MassiveCoreForgeFixes
+version: 1.0.0
+authors: [ MarkehMe ]
+description: Allows MassiveCore to work with Forge/KCauldron/Cauldron
+softdepend: [ MassiveCore ]
