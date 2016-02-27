@@ -3,7 +3,7 @@ This simple plugin fixes game-breaking issues with Forge and MassiveCore.
 
 Fixes include:
 * Sender assigning issues with MassiveCore
-* Double "Wilderness --> Faction" messages (by DraksterAU)
+* Double "Wilderness --> Faction" messages (by @DraksterAU)
 
 ##Downloading & Installation 
 You can download MassiveCore Forge Fixes from the releases section:
