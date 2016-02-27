@@ -1,5 +1,8 @@
 package me.markeh.massivecoreforgefixes;
 
+import me.markeh.massivecoreforgefixes.plugins.FactionsFixes;
+import me.markeh.massivecoreforgefixes.plugins.FixBase;
+
 import org.bukkit.ChatColor;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -34,6 +37,8 @@ public class MassiveCoreForgeFixes extends JavaPlugin {
 			log("We couldn't find MassiveCore ...");
 			this.getServer().getPluginManager().disablePlugin(this);
 		}
+		
+		log("Fixes enabled!");
 	}
 	
 	// ------------------------------
@@ -52,11 +57,17 @@ public class MassiveCoreForgeFixes extends JavaPlugin {
 	// Simply adds our events 
 	public final void enableFixes() {
 		this.getServer().getPluginManager().registerEvents(MCFFEvents.get(), this);
+		
+		if (this.getServer().getPluginManager().isPluginEnabled("Factions")) {
+			FactionsFixes.get().enable();
+		}
 	}
 	
-	// Simply disables our events
+	// Simply disables our events and plugin fixes
 	public final void disableFixes() {
 		HandlerList.unregisterAll(MCFFEvents.get());
+		
+		FixBase.disableAll();
 	}
 	
 	// Log util
