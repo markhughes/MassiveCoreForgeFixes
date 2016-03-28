@@ -1,9 +1,10 @@
-package me.markeh.massivecoreforgefixes.plugins;
+package me.markeh.massivecoreforgefixes.plugins.factions;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import me.markeh.massivecoreforgefixes.MassiveCoreForgeFixes;
+import me.markeh.massivecoreforgefixes.plugins.FixBase;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;

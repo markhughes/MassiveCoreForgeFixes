@@ -1,7 +1,7 @@
 package me.markeh.massivecoreforgefixes;
 
-import me.markeh.massivecoreforgefixes.plugins.FactionsFixes;
 import me.markeh.massivecoreforgefixes.plugins.FixBase;
+import me.markeh.massivecoreforgefixes.plugins.factions.FactionsFixes;
 
 import org.bukkit.ChatColor;
 import org.bukkit.event.HandlerList;

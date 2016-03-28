@@ -1,4 +1,4 @@
-package me.markeh.massivecoreforgefixes.plugins;
+package me.markeh.massivecoreforgefixes.plugins.factions;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
