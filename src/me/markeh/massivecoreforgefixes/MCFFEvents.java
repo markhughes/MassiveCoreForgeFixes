@@ -21,13 +21,15 @@ public class MCFFEvents implements Listener {
 		return i;
 	}
 
-	// -------------------------------------------- //
+	// ----------------------------------------
 	// setSenderReferencesLater
-	// -------------------------------------------- //
-	// setSenderReferencesLater solves an issue where initiateSender is
-	// always called too early for Cauldron/KCauldron. This is due to
-	// the mod load delay when logging in. This enables 3 major events
-	// so we can run setSenderReferencesSoon later on. 
+	// ----------------------------------------
+	// setSenderReferencesLater solves an issue
+	// where initiateSender is always called too
+	// early for Cauldron/KCauldron. This is due to
+	// the mod load delay when logging in. This
+	// enables 3 major events so we can run
+	// setSenderReferencesSoon later on. 
 	
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event) {
@@ -37,13 +39,13 @@ public class MCFFEvents implements Listener {
 	private Listener generateInitiateSenderListener(final Player player) {
 		return new Listener() {
 			@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = false)
-			public void executeInitiateSender(PlayerMoveEvent event) { this.executeInitiateSender(); }
+			public void executeInitiateSender(PlayerMoveEvent event) { if (event.getPlayer() == player) this.executeInitiateSender(); }
 			
 			@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = false)
-			public void executeInitiateSender(PlayerCommandPreprocessEvent event) { this.executeInitiateSender(); }
+			public void executeInitiateSender(PlayerCommandPreprocessEvent event) { if (event.getPlayer() == player) this.executeInitiateSender(); }
 			
 			@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = false)
-			public void executeInitiateSender(AsyncPlayerChatEvent event) { this.executeInitiateSender(); }
+			public void executeInitiateSender(AsyncPlayerChatEvent event) { if (event.getPlayer() == player) this.executeInitiateSender(); }
 
 			public void executeInitiateSender() {				
 				// Now run setSenderReferencesSoon
