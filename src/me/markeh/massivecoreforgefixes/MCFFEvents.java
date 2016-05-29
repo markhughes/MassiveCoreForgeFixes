@@ -47,8 +47,20 @@ public class MCFFEvents implements Listener {
 
 			public void executeInitiateSender() {				
 				// Now run setSenderReferencesSoon
-				EngineMassiveCoreDatabase.setSenderReferencesSoon(player, null);
-				
+				try {
+					EngineMassiveCoreDatabase.setSenderReferencesSoon(player, null);
+				} catch (Exception e) {
+					
+					// Probably using an older version
+					try {
+						Class.forName("com.massivecraft.massivecore.MassiveCoreEngineMain")
+							.getMethod("setSenderReferencesSoon", Player.class)
+							.invoke(this, player);
+						
+					} catch (Exception e2) {
+						e2.printStackTrace();
+					}
+				}
 				// Unregister this listener
 				HandlerList.unregisterAll(this);
 			}

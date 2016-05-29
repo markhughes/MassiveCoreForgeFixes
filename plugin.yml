@@ -1,6 +1,6 @@
 main: me.markeh.massivecoreforgefixes.MassiveCoreForgeFixes
 name: MassiveCoreForgeFixes
-version: 1.1.0
+version: 1.2.0
 authors: [ MarkehMe ]
 description: Allows MassiveCore and MassiveCore plugins to work with Forge/KCauldron/Cauldron
 softdepend: [ MassiveCore, Factions ]
