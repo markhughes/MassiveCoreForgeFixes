@@ -10,21 +10,21 @@ import java.util.List;
  * When a fix is enable it should be passed to logFix
  *
  */
-public abstract class FixBase {
+public abstract class AbstractPluginBase {
 	
 	// ------------------------------
 	//  FIXES LOG 
 	// ------------------------------
 	
 	// List of plugin fixes 
-	private static List<FixBase> fixes = new ArrayList<FixBase>();
+	private static List<AbstractPluginBase> fixes = new ArrayList<AbstractPluginBase>();
 	
 	// Log a plugin fix 
-	public static void logFix(FixBase fix) { fixes.add(fix); }
+	public static void logFix(AbstractPluginBase fix) { fixes.add(fix); }
 	
 	// Disable all fixes 
 	public static void disableAll() {
-		for (FixBase fix : fixes) fix.disable();
+		for (AbstractPluginBase fix : fixes) fix.disable();
 		fixes.clear();
 	}
 

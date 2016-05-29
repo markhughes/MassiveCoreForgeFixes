@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.markeh.massivecoreforgefixes.MassiveCoreForgeFixes;
-import me.markeh.massivecoreforgefixes.plugins.FixBase;
+import me.markeh.massivecoreforgefixes.plugins.AbstractPluginBase;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.RegisteredListener;
 
-public class FactionsFixes extends FixBase {
+public class FactionsFixes extends AbstractPluginBase {
 
 	private static FactionsFixes i = null;
 	public static FactionsFixes get() {
@@ -24,7 +24,7 @@ public class FactionsFixes extends FixBase {
 	@Override
 	public void enable() {
 		// Store this into the FixBase 
-		FixBase.logFix(FactionsFixes.get());
+		logFix(FactionsFixes.get());
 		
 		// Scan over Factions EngineMain for PlayerMoveEvent events 
 		
