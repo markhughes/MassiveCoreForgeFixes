@@ -10,8 +10,6 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-import com.massivecraft.massivecore.engine.EngineMassiveCoreDatabase;
-
 public class MCFFEvents implements Listener {
 	
 	private static MCFFEvents i;
@@ -50,7 +48,7 @@ public class MCFFEvents implements Listener {
 			public void executeInitiateSender() {				
 				// Now run setSenderReferencesSoon
 				try {
-					EngineMassiveCoreDatabase.setSenderReferencesSoon(player, null);
+					com.massivecraft.massivecore.engine.EngineMassiveCoreDatabase.setSenderReferencesSoon(player, null);
 				} catch (Exception e) {
 					
 					// Probably using an older version
