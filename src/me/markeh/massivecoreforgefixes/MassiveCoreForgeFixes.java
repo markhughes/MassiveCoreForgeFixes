@@ -18,6 +18,14 @@ public class MassiveCoreForgeFixes extends JavaPlugin {
 	public MassiveCoreForgeFixes() { i = this; }
 	
 	// ----------------------------------------
+	//  FIELDS
+	// ----------------------------------------
+	
+	private String massivecorePluginName = null;
+	private String factionsVersion;
+	private String massivecoreVersion;
+	
+	// ----------------------------------------
 	//  PLUGIN ENABLE
 	// ----------------------------------------
 	
@@ -30,12 +38,28 @@ public class MassiveCoreForgeFixes extends JavaPlugin {
 			log("We will still log the events anyway, but please ensure this is only running on a forge-based server.");
 		}	
 		
-		if (this.getServer().getPluginManager().isPluginEnabled("MassiveCore") || this.getServer().getPluginManager().isPluginEnabled("MCore")) {
-			this.enableFixes();
-		} else {
+		// Attempt to find MassiveCore plugin name
+		if (this.getServer().getPluginManager().isPluginEnabled("MassiveCore")) {
+			this.massivecorePluginName = "MassiveCore";
+		}
+		
+		if (this.getServer().getPluginManager().isPluginEnabled("MCore")) {
+			this.massivecorePluginName = "MCore";
+		}
+		
+		// Check for MassiveCore
+		if (this.massivecorePluginName == null) {
 			log("We couldn't find MassiveCore ...");
 			this.getServer().getPluginManager().disablePlugin(this);
+			return;
 		}
+		
+		// Store plugin versions
+		this.factionsVersion = this.getServer().getPluginManager().getPlugin("Factions").getDescription().getVersion();
+		this.massivecoreVersion = this.getServer().getPluginManager().getPlugin(this.massivecorePluginName).getDescription().getVersion();
+		
+		// Enable fixes
+		this.enableFixes();
 		
 		log("Fixes enabled!");
 	}
@@ -76,6 +100,12 @@ public class MassiveCoreForgeFixes extends JavaPlugin {
 		}
 		
 		return this;
+	}
+	
+	// Print the exception with detailed information
+	public final void detailedPrint(Exception e) {
+		e.printStackTrace();
+		System.out.println("With: Factions " + this.factionsVersion + ", " + this.massivecorePluginName + " " + this.massivecoreVersion + ", " + this.getServer().getName() + " " + this.getServer().getVersion());
 	}
 	
 }
