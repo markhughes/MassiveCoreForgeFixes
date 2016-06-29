@@ -6,6 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.metadata.Metadatable;
 
 import com.massivecraft.factions.engine.EngineMain;
 import com.massivecraft.factions.entity.BoardColl;
@@ -42,7 +43,7 @@ public class FactionsEvents implements Listener {
 		// If the player is moving from one chunk to another ...
 		if (MUtil.isSameChunk(event)) return;
 		Player player = event.getPlayer();
-		if (MUtil.isntPlayer(player)) return;
+		if (this.isntPlayer(player)) return;
 		
 		// ... gather info on the player and the move ...
 		MPlayer mplayer = MPlayer.get(player);
@@ -87,4 +88,30 @@ public class FactionsEvents implements Listener {
 		
 		VisualizeUtil.clear(event.getPlayer());
 	}
+	
+	// ----------------------------------------
+	// UTIL
+	//----------------------------------------
+	
+	public Boolean isNPC(Object object) {
+		if ( ! (object instanceof Metadatable)) return false;
+		Metadatable metadatable = (Metadatable) object;
+		
+		try {
+			return metadatable.hasMetadata("NPC");
+		} catch (UnsupportedOperationException e) {
+			return false;
+		}
+	}
+	
+	public boolean isPlayer(Object object) {
+		if ( ! (object instanceof Player)) return false;
+		if (this.isNPC(object)) return false;
+		return true;
+	}
+	
+	public boolean isntPlayer(Object object) {
+		return !isPlayer(object);
+	}
+	
 }
