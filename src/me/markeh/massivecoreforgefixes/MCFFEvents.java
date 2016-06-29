@@ -12,12 +12,12 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 public class MCFFEvents implements Listener {
 	
-	private static MCFFEvents i;
-	public static MCFFEvents get() {
-		if (i == null) i = new MCFFEvents();
-		
-		return i;
-	}
+	// ----------------------------------------
+	// SINGLETON
+	// ----------------------------------------
+	
+	private static MCFFEvents i = new MCFFEvents();
+	public static MCFFEvents get() { return i; }
 
 	// ----------------------------------------
 	// setSenderReferencesLater
@@ -48,6 +48,8 @@ public class MCFFEvents implements Listener {
 			public void executeInitiateSender() {				
 				// Now run setSenderReferencesSoon
 				try {
+					Class.forName("com.massivecraft.massivecore.engine.EngineMassiveCoreDatabase");
+					
 					com.massivecraft.massivecore.engine.EngineMassiveCoreDatabase.setSenderReferencesSoon(player, null);
 				} catch (Exception e) {
 					
@@ -58,7 +60,8 @@ public class MCFFEvents implements Listener {
 							.invoke(this, player);
 						
 					} catch (Exception e2) {
-						e2.printStackTrace();
+						MassiveCoreForgeFixes.get().detailedPrint(e);
+						MassiveCoreForgeFixes.get().detailedPrint(e2);
 					}
 				}
 				// Unregister this listener
